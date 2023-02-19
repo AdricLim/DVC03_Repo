@@ -26,7 +26,6 @@ pipeline {
         
         stage('S1_17040692') {
             steps {
-                cleanWs()
                 sh """
                 echo "S1_17040692: Environment Preparation Completed"
                 """
@@ -35,21 +34,47 @@ pipeline {
 
         stage('S2_17040692') {
             steps {
-                checkout([
-                    $class: 'GitSCM', 
-                    branches: [[name: '*/main']], 
-                    userRemoteConfigs: [[url: 'https://github.com/spring-projects/spring-petclinic.git']]
-                ])
+                sh """
+                echo "S2_17040692: Web Server Creation Completed Completed"
+                """
+
+            }
+        }
+        
+        
+       
+       stage ('Testing') {
+       
+       parallel{
+
+        stage('S3_17040692') {
+            steps {
+                sh """
+                echo "S3_17040692: API Test Completed"
+                """
             }
         }
 
-        stage('Code Build') {
+        stage('S4_17040692') {
+            steps {
+                sh """
+                echo "S4_17040692: DAST Security Test Completed"
+                """
+            }
+        }
+        
+        
+        }
+        }
+       
+        
+         stage('S5_1704692') {
             steps {
                  sh 'mvn install -Dmaven.test.skip=true'
             }
         }
 
-        stage('Printing All Global Variables') {
+        stage('S6_17040692') {
             steps {
                 sh """
                 env
