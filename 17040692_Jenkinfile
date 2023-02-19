@@ -69,18 +69,16 @@ pipeline {
        
         
          stage('S5_1704692') {
+            input {
+                message "Do you want to release the work ?"
+                ok "Proceed"
+            }
             steps {
-                 sh 'mvn install -Dmaven.test.skip=true'
+                 echo "Work Released - 17040692."
             }
         }
 
-        stage('S6_17040692') {
-            steps {
-                sh """
-                env
-                """
-            }
-        }
+
 
     }   
 }
