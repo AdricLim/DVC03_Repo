@@ -1,0 +1,61 @@
+pipeline {
+
+    agent {
+        node {
+            label 'master'
+        }
+    }
+
+    tools { 
+        maven 'maven3' 
+    }
+
+    options {
+        buildDiscarder logRotator( 
+                    daysToKeepStr: '15', 
+                    numToKeepStr: '10'
+            )
+    }
+
+    environment {
+        APP_NAME = "STUDENT_APP"
+        APP_ENV  = "DEV"
+    }
+
+    stages {
+        
+        stage('S1_17040692') {
+            steps {
+                cleanWs()
+                sh """
+                echo "S1_17040692: Environment Preparation Completed"
+                """
+            }
+        }
+
+        stage('S2_17040692') {
+            steps {
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: '*/main']], 
+                    userRemoteConfigs: [[url: 'https://github.com/spring-projects/spring-petclinic.git']]
+                ])
+            }
+        }
+
+        stage('Code Build') {
+            steps {
+                 sh 'mvn install -Dmaven.test.skip=true'
+            }
+        }
+
+        stage('Printing All Global Variables') {
+            steps {
+                sh """
+                env
+                """
+            }
+        }
+
+    }   
+}
