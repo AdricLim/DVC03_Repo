@@ -75,18 +75,7 @@ pipeline {
             }
 
         }
-        
-        stage('S6_17040692') {
-            input {
-                message "Do you want to release the work ?"
-                ok "Proceed"
-            }
-            steps {
-                 sh """
-                 echo "Work Released - 17040692."
-                 """
-            }
-        }
+
 
 
 
