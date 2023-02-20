@@ -71,7 +71,7 @@ pipeline {
         stage('S5_17040692') {
             steps {
                  sh """
-                 Prompt: Do you want to release the work?
+                 echo "Do you want to release the work?"
                  """
             }
         }
