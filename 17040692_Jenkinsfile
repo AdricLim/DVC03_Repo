@@ -71,6 +71,14 @@ pipeline {
          stage('S5_17040692') {
             input {
                 message "Do you want to release the work ?"
+      
+            }
+
+        }
+        
+        stage('S6_17040692') {
+            input {
+                message "Do you want to release the work ?"
                 ok "Proceed"
             }
             steps {
