@@ -74,7 +74,9 @@ pipeline {
                 ok "Proceed"
             }
             steps {
+                 sh """
                  echo "Work Released - 17040692."
+                 """
             }
         }
 
