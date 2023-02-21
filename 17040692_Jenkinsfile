@@ -70,7 +70,7 @@ pipeline {
         
         stage('S5_17040692') {
             steps {
-                 Input('Do you want to release the work?')
+                 input('Do you want to release the work?')
             }
         }
         
