@@ -75,11 +75,6 @@ pipeline {
         }
         
         stage('S6_17040692') {
-            when {
-              not{
-                echo "ABORTED"
-                }
-            }
             steps {
                  sh """
                  echo "Work Released - 17040692."
