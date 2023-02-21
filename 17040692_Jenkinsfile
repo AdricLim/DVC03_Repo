@@ -70,16 +70,15 @@ pipeline {
         
         stage('S5_17040692') {
             steps {
-                 sh """
-                 echo "Do you want to release the work?"
-                 """
+                 Input('Do you want to release the work?')
             }
         }
         
         stage('S6_17040692') {
-            input {
-                message "Do you want to release the work ?"
-                ok "Proceed"
+            when {
+              not{
+                Abort
+                }
             }
             steps {
                  sh """
